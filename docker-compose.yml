@@ -1,0 +1,7 @@
+services:
+
+  app:
+    build: .
+    container_name: devops-compose-app
+    ports:
+      - "5000:5000"
