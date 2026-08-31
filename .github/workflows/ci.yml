@@ -32,7 +32,7 @@ jobs:
         run: docker build -t devops-microservice:${{ github.sha }} .
 
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.35.0
         with:
           image-ref: devops-microservice:${{ github.sha }}
           format: table
