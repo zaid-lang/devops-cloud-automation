@@ -1,0 +1,28 @@
+---
+- name: Configure DevOps application environment
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - git
+        state: present
+        update_cache: true
+
+    - name: Create application configuration directory
+      file:
+        path: /opt/devops-app
+        state: directory
+        mode: "0755"
+
+    - name: Create application environment file
+      copy:
+        dest: /opt/devops-app/app.env
+        content: |
+          APP_NAME=DevOps Cloud Automation
+          ENVIRONMENT=production
+        mode: "0644"

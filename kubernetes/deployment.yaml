@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: devops-microservice
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: devops-microservice
+
+  template:
+    metadata:
+      labels:
+        app: devops-microservice
+
+    spec:
+      containers:
+        - name: devops-microservice
+          image: devops-microservice:1.0
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 5000
+          
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
